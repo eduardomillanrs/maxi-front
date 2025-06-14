@@ -1,6 +1,10 @@
 import Aura from '@primeng/themes/aura';
 import { definePreset } from '@primeng/themes';
 
+interface DesignToken {
+  dt: (...args: unknown[]) => unknown;
+}
+
 export const AppPreset = definePreset(Aura, {
   primitive: {
     borderRadius: {
@@ -655,6 +659,22 @@ export const AppPreset = definePreset(Aura, {
           },
         },
       },
+    },
+  },
+  components: {
+    card: {
+      shadow: 'none',
+      extend: {
+        border: {
+          color: '{surface.200}',
+        },
+      },
+      css: ({ dt }: DesignToken) => `
+        .p-card {
+          border-width: 1px;
+          border-color: ${dt('card.border.color')};
+        }
+      `,
     },
   },
 });
