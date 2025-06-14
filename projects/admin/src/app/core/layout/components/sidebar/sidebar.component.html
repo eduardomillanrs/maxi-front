@@ -1,0 +1,108 @@
+@if (isMobile()) {
+  <p-drawer [(visible)]="isVisible">
+    <ng-template #headless>
+      <ng-container *ngTemplateOutlet="sidebar"></ng-container>
+    </ng-template>
+  </p-drawer>
+} @else {
+  <div class="sidebar-wrapper" [class.collapsed]="!isVisible()">
+    <ng-container *ngTemplateOutlet="sidebar"></ng-container>
+  </div>
+}
+
+<ng-template #sidebar>
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <p-button
+        id="business-unit-switcher"
+        class="w-full"
+        styleClass="w-full h-full justify-between transition-[width,height,padding]"
+        [text]="true"
+        (click)="menu.toggle($event)"
+      >
+        <div class="flex h-full items-center gap-2">
+          <div
+            class="bg-primary text-primary-contrast flex aspect-square size-8 items-center justify-center rounded-md"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="size-(--p-icon-size)"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M20.993 11.63a9 9 0 0 1 -9.362 9.362l9.362 -9.362z" />
+              <path d="M12 3a9.001 9.001 0 0 1 8.166 5.211l-11.955 11.955a9 9 0 0 1 3.789 -17.166z" />
+              <path d="M12 12l-6 6" />
+            </svg>
+          </div>
+
+          <div class="flex flex-col items-start">
+            <span class="truncate font-medium">Rentit</span>
+            <small class="truncate text-xs">Grupo Maxieventos</small>
+          </div>
+        </div>
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="size-(--p-icon-size)"
+        >
+          <path d="m7 15 5 5 5-5" />
+          <path d="m7 9 5-5 5 5" />
+        </svg>
+      </p-button>
+    </div>
+
+    <p-scrollpanel [style]="{ width: '100%', height: 'var(--content-height, calc(100dvh - 4rem))' }">
+      <div class="sidebar-content">
+        <p-accordion
+          expandIcon="pi pi-chevron-right"
+          collapseIcon="pi pi-chevron-down"
+          [(value)]="activeMenuIndex"
+          (onOpen)="openMenu()"
+        >
+          @for (menu of menus; track menu.id) {
+            <p-accordion-panel [value]="menu.id">
+              <p-accordion-header>
+                <div class="flex items-center gap-2">
+                  @if (isVisible()) {
+                    <i [class]="menu.icon"></i>
+                  } @else {
+                    <i [pTooltip]="menu.name" [class]="menu.icon"></i>
+                  }
+                  <span>{{ menu.name }}</span>
+                </div>
+              </p-accordion-header>
+
+              <p-accordion-content>
+                <ul class="sidebar-menu-sub">
+                  @for (submenu of menu.submenus; track submenu.id) {
+                    <li>
+                      <a [routerLink]="submenu.route" class="sidebar-menu-sub-link">{{ submenu.name }}</a>
+                    </li>
+                  }
+                </ul>
+              </p-accordion-content>
+            </p-accordion-panel>
+          }
+        </p-accordion>
+      </div>
+    </p-scrollpanel>
+  </div>
+</ng-template>
+
+<p-menu #menu appendTo="body" [model]="items" [popup]="true" />
