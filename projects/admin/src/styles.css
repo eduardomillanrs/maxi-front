@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@import "primeicons/primeicons.css";
+@import "@fontsource-variable/inter";
+
+@plugin "tailwindcss-primeui";
+
+@theme {
+  --font-sans:
+    "Inter Variable", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+}
+
+@layer base {
+  html {
+    font-size: 14px;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@utility layout-container {
+  max-width: 96rem;
+  margin: 0 auto;
+}
+
+@utility scroll-hidden {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
