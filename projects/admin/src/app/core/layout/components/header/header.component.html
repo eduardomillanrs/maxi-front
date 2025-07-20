@@ -20,6 +20,8 @@
   </p-button>
 
   <div class="flex items-center gap-4 lg:gap-8">
+    <p-button severity="secondary" [icon]="themeIcon()" [outlined]="true" (click)="themeService.toggle()" />
+
     <button class="cursor-pointer" (click)="menu.toggle($event)">
       <p-avatar #userAvatar label="EM" size="normal" shape="circle" class="size-10" />
     </button>
