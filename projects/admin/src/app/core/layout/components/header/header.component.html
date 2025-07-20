@@ -1,5 +1,5 @@
 <header class="layout-container header">
-  <p-button [text]="true" (click)="toggleSidebar()">
+  <p-button [text]="true" (click)="toggle()">
     <ng-template #icon>
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -20,8 +20,6 @@
   </p-button>
 
   <div class="flex items-center gap-4 lg:gap-8">
-    <p-autocomplete [dropdown]="true" dropdownIcon="pi pi-search" size="small" />
-
     <button class="cursor-pointer" (click)="menu.toggle($event)">
       <p-avatar #userAvatar label="EM" size="normal" shape="circle" class="size-10" />
     </button>

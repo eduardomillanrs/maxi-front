@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnInit, Signal, WritableSignal } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
@@ -10,8 +10,8 @@ import { MenuModule } from 'primeng/menu';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { TooltipModule } from 'primeng/tooltip';
 
-import { Menu } from '@admin/app/core/layout/models/menu';
-import { ScreenSizeService } from '@admin/app/shared/services/screen-size.service';
+import { Menu } from '@admin/app/core/layout/components/sidebar/menu';
+import { ScreenSizeService } from '@admin/app/core/layout/screen-size.service';
 import { SidebarService } from '@admin/app/core/layout/components/sidebar/sidebar.service';
 
 const CLOSED_MENU_INDEX = 0;
@@ -32,33 +32,15 @@ const CLOSED_MENU_INDEX = 0;
   styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent implements OnInit {
-  private screenSizeService: ScreenSizeService = inject(ScreenSizeService);
-  private sidebarService: SidebarService = inject(SidebarService);
+  private readonly screenSizeService = inject(ScreenSizeService);
+  private readonly sidebarService = inject(SidebarService);
 
-  protected activeMenuIndex: number = CLOSED_MENU_INDEX;
-  protected isMobile: Signal<boolean> = this.screenSizeService.isMobile.asReadonly();
-  protected isVisible: WritableSignal<boolean> = this.sidebarService.isVisible;
+  protected activeMenuIndex = CLOSED_MENU_INDEX;
+  protected isMobile = this.screenSizeService.isMobile.asReadonly();
+  protected isVisible = this.sidebarService.isVisible;
 
+  protected items: MenuItem[] = this.buildMenuItems();
   protected menus: Menu[] = [];
-  protected items: MenuItem[] = [
-    {
-      label: 'Unidades de negocio',
-      items: [
-        {
-          label: 'Almadera',
-          icon: PrimeIcons.BRIEFCASE,
-        },
-        {
-          label: 'Casa Atura',
-          icon: PrimeIcons.BRIEFCASE,
-        },
-        {
-          label: 'Rentit',
-          icon: PrimeIcons.BRIEFCASE,
-        },
-      ],
-    },
-  ];
 
   constructor() {
     effect(() => {
@@ -88,5 +70,27 @@ export class SidebarComponent implements OnInit {
         this.menus = [];
       },
     });
+  }
+
+  private buildMenuItems(): MenuItem[] {
+    return [
+      {
+        label: 'Unidades de negocio',
+        items: [
+          {
+            label: 'Almadera',
+            icon: PrimeIcons.BRIEFCASE,
+          },
+          {
+            label: 'Casa Atura',
+            icon: PrimeIcons.BRIEFCASE,
+          },
+          {
+            label: 'Rentit',
+            icon: PrimeIcons.BRIEFCASE,
+          },
+        ],
+      },
+    ];
   }
 }

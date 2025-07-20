@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 
-import { AutoCompleteModule } from 'primeng/autocomplete';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { MenuItem, PrimeIcons } from 'primeng/api';
@@ -10,28 +9,32 @@ import { SidebarService } from '@admin/app/core/layout/components/sidebar/sideba
 
 @Component({
   selector: 'app-header',
-  imports: [AutoCompleteModule, AvatarModule, ButtonModule, MenuModule],
+  imports: [AvatarModule, ButtonModule, MenuModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  private sidebarService: SidebarService = inject(SidebarService);
+  private readonly sidebarService = inject(SidebarService);
 
-  protected items: MenuItem[] = [
-    {
-      separator: true,
-    },
-    {
-      label: 'Perfil',
-      icon: PrimeIcons.USER,
-    },
-    {
-      label: 'Cerrar sessión',
-      icon: PrimeIcons.SIGN_OUT,
-    },
-  ];
+  protected items: MenuItem[] = this.buildMenuItems();
 
-  protected toggleSidebar(): void {
+  protected toggle(): void {
     this.sidebarService.isVisible.update((isVisible) => !isVisible);
+  }
+
+  private buildMenuItems(): MenuItem[] {
+    return [
+      {
+        separator: true,
+      },
+      {
+        label: 'Perfil',
+        icon: PrimeIcons.USER,
+      },
+      {
+        label: 'Cerrar sessión',
+        icon: PrimeIcons.SIGN_OUT,
+      },
+    ];
   }
 }
