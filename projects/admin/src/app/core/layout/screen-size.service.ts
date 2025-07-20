@@ -1,4 +1,4 @@
-import { inject, Injectable, signal, WritableSignal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { map, Observable } from 'rxjs';
 
@@ -10,13 +10,11 @@ export enum ScreenSize {
   ['2xl'] = '96rem',
 }
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class ScreenSizeService {
-  private breakpointObserver: BreakpointObserver = inject(BreakpointObserver);
+  private readonly breakpointObserver = inject(BreakpointObserver);
 
-  public isMobile: WritableSignal<boolean> = signal(!this.match(ScreenSize.md));
+  public readonly isMobile = signal<boolean>(!this.match(ScreenSize.md));
 
   constructor() {
     this.observe(ScreenSize.md).subscribe({
