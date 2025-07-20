@@ -11,10 +11,10 @@ import { routes } from '@admin/app/app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideAnimationsAsync(),
     provideRouter(routes),
     provideHttpClient(withFetch(), withInterceptors([apiInterceptor])),
-    provideAnimationsAsync(),
+    provideZoneChangeDetection({ eventCoalescing: true }),
     providePrimeNG({
       translation: es,
       theme: {
