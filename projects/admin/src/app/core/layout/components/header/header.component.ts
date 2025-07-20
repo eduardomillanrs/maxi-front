@@ -12,7 +12,7 @@ import { ThemeService } from '@admin/app/core/theme/theme.service';
   selector: 'app-header',
   imports: [AvatarModule, ButtonModule, MenuModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+  styleUrl: './header.component.css',
 })
 export class HeaderComponent {
   private readonly sidebarService = inject(SidebarService);

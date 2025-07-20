@@ -1,6 +1,11 @@
-.header {
+.header-wrapper {
   width: 100%;
   height: var(--header-height);
+  border-bottom: 1px solid var(--p-content-border-color);
+}
+
+.header {
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
