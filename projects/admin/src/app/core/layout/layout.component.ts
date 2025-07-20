@@ -7,6 +7,6 @@ import { HeaderComponent, SidebarComponent } from '@admin/app/core/layout/compon
   selector: 'app-layout',
   imports: [RouterOutlet, HeaderComponent, SidebarComponent],
   templateUrl: './layout.component.html',
-  styleUrl: './layout.component.scss',
+  styleUrl: './layout.component.css',
 })
 export class LayoutComponent {}
