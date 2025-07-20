@@ -11,7 +11,7 @@ export class SidebarService {
   private readonly screenSizeService = inject(ScreenSizeService);
   private readonly storageService = inject(StorageService);
 
-  public readonly isVisible = signal<boolean>(this.loadVisibleState());
+  public readonly isVisible = signal<boolean>(this.loadVisibility());
 
   constructor() {
     effect(() => {
@@ -23,8 +23,11 @@ export class SidebarService {
     return of(menus);
   }
 
-  private loadVisibleState(): boolean {
-    const isVisible = this.storageService.get<boolean | null>('app-sidebar-visible');
-    return isVisible ?? !this.screenSizeService.isMobile();
+  private loadVisibility(): boolean {
+    if (this.screenSizeService.isMobile()) {
+      return false;
+    }
+
+    return this.storageService.get<boolean>('app-sidebar-visible') ?? true;
   }
 }
