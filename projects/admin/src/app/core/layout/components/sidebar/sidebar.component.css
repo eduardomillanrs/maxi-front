@@ -1,0 +1,81 @@
+.sidebar-wrapper {
+  --sidebar-menu-height: 2.5rem;
+  --sidebar-menu-padding: 0.35rem 0.5rem;
+
+  width: var(--sidebar-width);
+  height: 100dvh;
+  border-right: 1px solid var(--p-content-border-color);
+  transition: var(--layout-transition);
+}
+
+.sidebar-wrapper.collapsed {
+  --sidebar-menu-height: 1.5rem;
+}
+
+.sidebar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  width: 100%;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.sidebar-content {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.sidebar-content ::ng-deep .p-accordionpanel {
+  --p-accordion-panel-border-width: 0;
+  --p-accordion-panel-border-color: transparent;
+
+  margin-bottom: 0.5rem;
+}
+
+.sidebar-content ::ng-deep .p-accordionheader {
+  --p-accordion-header-background: transparent;
+  --p-accordion-header-hover-background: var(--p-content-hover-background);
+  --p-accordion-header-padding: var(--sidebar-menu-padding);
+  --p-accordion-header-border-radius: var(--p-border-radius-sm);
+
+  height: var(--sidebar-menu-height);
+}
+
+.sidebar-wrapper.collapsed .sidebar-content ::ng-deep .p-accordionheader .menu-item span,
+.sidebar-wrapper.collapsed .sidebar-content ::ng-deep .p-accordionheader .menu-item + span {
+  display: none;
+}
+
+.sidebar-content ::ng-deep .p-accordioncontent-content {
+  --p-accordion-content-background: transparent;
+  --p-accordion-content-padding: 0 0.5rem 0 0.5rem;
+}
+
+.sidebar-menu-sub {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin: 0 0.5rem;
+  padding: 0 0.5rem;
+  border-left: 1px solid var(--p-content-border-color);
+}
+
+.sidebar-menu-sub-link {
+  min-height: var(--sidebar-menu-height);
+  display: flex;
+  align-items: center;
+  padding: var(--sidebar-menu-padding);
+  border-radius: var(--p-border-radius-sm);
+
+  &:hover {
+    background-color: var(--p-content-hover-background);
+    color: var(--p-text-color);
+  }
+}

@@ -78,12 +78,13 @@
           @for (menu of menus; track menu.id) {
             <p-accordion-panel [value]="menu.id">
               <p-accordion-header>
-                <div class="flex items-center gap-2">
+                <div class="menu-item flex items-center gap-2">
                   @if (isVisible()) {
                     <i [class]="menu.icon"></i>
                   } @else {
                     <i [pTooltip]="menu.name" [class]="menu.icon"></i>
                   }
+
                   <span>{{ menu.name }}</span>
                 </div>
               </p-accordion-header>
@@ -103,6 +104,6 @@
       </div>
     </p-scrollpanel>
   </div>
-</ng-template>
 
-<p-menu #menu appendTo="body" [model]="items" [popup]="true" />
+  <p-menu #menu [model]="items" [popup]="true" />
+</ng-template>

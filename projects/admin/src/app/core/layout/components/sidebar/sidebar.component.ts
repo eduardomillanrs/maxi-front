@@ -29,7 +29,7 @@ const CLOSED_MENU_INDEX = 0;
     TooltipModule,
   ],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.scss',
+  styleUrl: './sidebar.component.css',
 })
 export class SidebarComponent implements OnInit {
   private readonly screenSizeService = inject(ScreenSizeService);
