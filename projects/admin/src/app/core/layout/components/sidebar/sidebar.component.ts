@@ -11,7 +11,7 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { TooltipModule } from 'primeng/tooltip';
 
 import { Menu } from '@admin/app/core/layout/components/sidebar/menu';
-import { ScreenSizeService } from '@admin/app/core/layout/screen-size.service';
+import { ScreenSizeService } from '@admin/app/core/layout/services';
 import { SidebarService } from '@admin/app/core/layout/components/sidebar/sidebar.service';
 
 const CLOSED_MENU_INDEX = 0;

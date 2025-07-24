@@ -1,6 +1,8 @@
 import Aura from '@primeng/themes/aura';
-import { definePreset } from '@primeng/themes';
+import { definePreset, palette } from '@primeng/themes';
 
 export const AppPreset = definePreset(Aura, {
-  // Preset customization
+  semantic: {
+    primary: palette('#3C82F6'),
+  },
 });

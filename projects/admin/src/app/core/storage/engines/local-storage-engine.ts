@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { StorageEngine } from '@admin/app/core/storage/sources/storage-engine';
+import { StorageEngine } from '@admin/app/core/storage/engines/storage-engine';
 
 @Injectable({ providedIn: 'root' })
 export class LocalStorageEngine implements StorageEngine {

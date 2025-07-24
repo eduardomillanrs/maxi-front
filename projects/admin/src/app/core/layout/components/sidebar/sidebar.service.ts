@@ -2,9 +2,10 @@ import { effect, inject, Injectable, signal } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { Menu } from '@admin/app/core/layout/components/sidebar/menu';
-import { menus } from '@admin/assets/mocks/menus';
-import { ScreenSizeService } from '@admin/app/core/layout/screen-size.service';
+import { ScreenSizeService } from '@admin/app/core/layout/services';
 import { StorageService } from '@admin/app/core/storage/storage.service';
+
+import { menus } from '@admin/assets/mocks/menus';
 
 @Injectable({ providedIn: 'root' })
 export class SidebarService {
