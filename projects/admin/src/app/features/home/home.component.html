@@ -1,1 +1,15 @@
-<h1>Home</h1>
+<app-page title="Eventos" subtitle="Listado de eventos">
+  <div page-actions class="flex flex-col gap-4 md:flex-row md:items-center">
+    <p-floatlabel variant="on">
+      <p-datepicker showIcon showButtonBar readonlyInput inputId="start-date" iconDisplay="input" />
+      <label for="start-date">Fecha de inicio</label>
+    </p-floatlabel>
+    <p-floatlabel variant="on">
+      <p-datepicker showIcon showButtonBar readonlyInput inputId="end-date" iconDisplay="input" />
+      <label for="end-date">Fecha final</label>
+    </p-floatlabel>
+    <p-button label="Buscar" icon="pi pi-search" />
+  </div>
+
+  <h1>Home</h1>
+</app-page>
