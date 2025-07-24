@@ -4,6 +4,7 @@
   --header-height: 4rem;
   --sidebar-width: 0rem;
   --content-height: calc(100dvh - var(--header-height));
+  --content-inner-height: calc(var(--content-height) - 4rem);
 
   --layout-transition: width 200ms linear;
 
@@ -29,5 +30,5 @@
 .content {
   width: 100%;
   height: var(--content-height);
-  padding: 1rem;
+  padding: 2rem;
 }
