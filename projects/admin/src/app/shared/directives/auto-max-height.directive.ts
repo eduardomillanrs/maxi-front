@@ -1,6 +1,6 @@
 import { AfterViewInit, Directive, ElementRef, inject, input, OnDestroy, Renderer2 } from '@angular/core';
 
-const OFFSET = 60;
+const OFFSET = 96;
 
 @Directive({
   selector: '[appAutoMaxHeight]',
