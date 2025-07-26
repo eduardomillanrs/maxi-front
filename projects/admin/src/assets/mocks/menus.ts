@@ -672,4 +672,4 @@ export const menus: Menu[] = [
     icon: PrimeIcons.TAG,
     isActive: false,
   },
-];
+] as const;
