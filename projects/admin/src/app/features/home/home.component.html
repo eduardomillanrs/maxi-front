@@ -8,8 +8,20 @@
       <p-datepicker showIcon showButtonBar readonlyInput inputId="end-date" iconDisplay="input" />
       <label for="end-date">Fecha final</label>
     </p-floatlabel>
-    <p-button label="Buscar" icon="pi pi-search" />
+    <p-button label="Buscar" icon="pi pi-search" severity="secondary" />
   </div>
 
-  <h1>Home</h1>
+  <app-data-table [bordered]="true" [columns]="columns" [data]="events">
+    <div data-table-actions class="flex items-center gap-2">
+      <p-button label="Nuevo evento" />
+    </div>
+
+    <ng-template appDataTableFilter="executive.name">
+      <p-multiselect appendTo="body" optionLabel="name" [options]="executives" />
+    </ng-template>
+
+    <ng-template appDataTableFilter="coordinator.name">
+      <p-multiselect appendTo="body" optionLabel="name" [options]="coordinators" />
+    </ng-template>
+  </app-data-table>
 </app-page>
