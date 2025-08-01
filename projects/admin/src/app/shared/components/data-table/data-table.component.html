@@ -1,0 +1,127 @@
+<p-table
+  #dt
+  appAutoMaxHeight=".p-datatable-table-container"
+  columnResizeMode="expand"
+  exportHeader="export"
+  [customSort]="true"
+  [paginator]="true"
+  [reorderableColumns]="true"
+  [resizableColumns]="true"
+  [scrollable]="true"
+  [(selection)]="selection"
+  [class]="{ 'data-table-bordered': bordered() }"
+  [columns]="cols"
+  [dataKey]="dataKey()"
+  [globalFilterFields]="globalFilterFields()"
+  [loading]="loading()"
+  [rowsPerPageOptions]="rowsPerPage()"
+  [rows]="rowPerPage()"
+  [value]="rows"
+  (sortFunction)="customSort($event)"
+>
+  <ng-template #caption>
+    <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <ng-content select="[data-table-actions]" ]></ng-content>
+
+      <div class="flow-row ml-auto flex items-center gap-2">
+        <p-multiselect
+          dropdownIcon="pi pi-eye"
+          optionLabel="header"
+          panelStyleClass="min-w-80"
+          styleClass="column-toggler"
+          [displaySelectedLabel]="false"
+          [highlightOnSelect]="false"
+          [ngModel]="cols"
+          [options]="columns()"
+          [selectAll]="isAllColumnsVisible"
+          (onChange)="toggleColumn($event)"
+        />
+
+        <p-button icon="pi pi-file-excel" severity="secondary" [outlined]="true" (click)="dt.exportCSV()" />
+        <p-divider layout="vertical" />
+        <p-floatlabel variant="on">
+          <p-iconfield>
+            <p-inputicon class="pi pi-search" />
+            <input pInputText id="search" autocomplete="off" (input)="filterGlobal($event)" />
+          </p-iconfield>
+          <label for="search">Buscar</label>
+        </p-floatlabel>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #header let-columns>
+    <tr>
+      <th pFrozenColumn><p-tableHeaderCheckbox /></th>
+      @for (column of columns; track $index) {
+        <th
+          pReorderableColumn
+          pResizableColumn
+          [pReorderableColumnDisabled]="!column.reorder"
+          [pResizableColumnDisabled]="!column.resize"
+          [pSortableColumnDisabled]="!column.sort"
+          [pSortableColumn]="column.field"
+        >
+          <div class="flex items-center gap-2">
+            <span>{{ column.header }}</span>
+            <p-sortIcon [field]="column.field" />
+          </div>
+        </th>
+      }
+    </tr>
+    <tr>
+      <th></th>
+      @for (column of columns; track $index) {
+        <th>
+          @switch (column.filter) {
+            @case ("builtin") {
+              @let isCurrency = column?.style === "currency";
+              <p-columnFilter
+                [field]="column.field"
+                [type]="column.type"
+                [currency]="isCurrency ? column?.currency : undefined"
+                [currencyDisplay]="isCurrency ? 'narrowSymbol' : undefined"
+                [minFractionDigits]="column?.minDigits ?? column?.digits"
+                [maxFractionDigits]="column?.maxDigits ?? column?.digits"
+              />
+            }
+
+            @case ("custom") {
+              <p-columnFilter [field]="column.field">
+                <ng-template #filter let-value let-filter="filterCallback">
+                  <ng-container
+                    *ngTemplateOutlet="filters.get(column.field) ?? null; context: { $implicit: value, filter: filter }"
+                  >
+                  </ng-container>
+                </ng-template>
+              </p-columnFilter>
+            }
+          }
+        </th>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #body let-row let-columns="columns">
+    <tr>
+      <td pFrozenColumn><p-tableCheckbox [value]="row" /></td>
+      @for (column of columns; track $index) {
+        @let value = getValue(row, column.field);
+
+        <td [class]="{ 'text-right': column?.style === 'currency' }">
+          @if (column.type === "boolean") {
+            <i
+              class="pi"
+              [class]="{
+                'pi-check-circle': value,
+                'text-(color:--p-button-text-success-color)': value,
+                'pi-times-circle': !value,
+                'text-(color:--p-button-text-danger-color)': !value,
+              }"
+            ></i>
+          } @else {
+            {{ formatValue(value, column) }}
+          }
+        </td>
+      }
+    </tr>
+  </ng-template>
+</p-table>

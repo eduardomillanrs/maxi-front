@@ -1,0 +1,73 @@
+::ng-deep {
+  .p-datatable {
+    --p-datatable-background: var(--p-content-background);
+  }
+
+  .p-datatable-header {
+    --p-datatable-header-background: transparent;
+    --p-datatable-header-border-width: 0;
+    --p-datatable-header-padding: 0.75rem 0;
+  }
+
+  .p-multiselect.column-toggler {
+    --p-multiselect-background: transparent;
+    --p-multiselect-border-color: var(--p-button-outlined-secondary-border-color);
+
+    &.p-focus {
+      --p-multiselect-focus-border-color: var(--p-multiselect-border-color);
+    }
+
+    &:hover {
+      --p-multiselect-background: var(--p-button-outlined-secondary-hover-background);
+      --p-multiselect-hover-border-color: var(--p-multiselect-border-color);
+    }
+
+    .p-multiselect-label {
+      display: none;
+    }
+
+    .p-multiselect-dropdown {
+      --p-multiselect-dropdown-color: var(--p-button-outlined-secondary-color);
+
+      width: var(--p-button-icon-only-width);
+      padding-block: var(--p-button-padding-y);
+    }
+  }
+
+  .p-datatable-table {
+    // --p-datatable-background: var(--p-content-background);
+    --p-datatable-header-cell-background: var(--p-datatable-background);
+    --p-datatable-row-background: var(--p-datatable-background);
+    --p-datatable-footer-cell-background: var(--p-datatable-background);
+  }
+
+  .data-table-bordered {
+    .p-datatable-table-container {
+      border-width: 1px 1px 0 1px;
+      border-style: solid;
+      border-color: var(--p-datatable-border-color);
+      border-radius: var(--p-content-border-radius) var(--p-content-border-radius) 0 0;
+    }
+
+    .p-datatable-table {
+      th,
+      td {
+        border-right: 1px solid var(--p-datatable-border-color);
+
+        &:last-of-type {
+          border-right-width: 0;
+        }
+      }
+    }
+
+    .p-paginator {
+      --p-paginator-background: var(--p-datatable-background);
+      --p-paginator-border-radius: 0;
+
+      border-width: 0 1px 1px 1px;
+      border-style: solid;
+      border-color: var(--p-datatable-border-color);
+      border-radius: 0 0 var(--p-content-border-radius) var(--p-content-border-radius);
+    }
+  }
+}
