@@ -2,9 +2,7 @@ import { AfterViewInit, Directive, ElementRef, inject, input, OnDestroy, Rendere
 
 const OFFSET = 96;
 
-@Directive({
-  selector: '[appAutoMaxHeight]',
-})
+@Directive({ selector: '[appAutoMaxHeight]' })
 export class AutoMaxHeightDirective implements AfterViewInit, OnDestroy {
   public readonly selector = input<string>(undefined, { alias: 'appAutoMaxHeight' });
 
