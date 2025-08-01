@@ -59,7 +59,7 @@
   --p-accordion-header-padding: var(--sidebar-menu-padding);
   --p-accordion-header-border-radius: var(--p-border-radius-sm);
 
-  height: var(--sidebar-menu-height);
+  min-height: var(--sidebar-menu-height);
 }
 
 .sidebar-wrapper.collapsed .sidebar-content ::ng-deep .p-accordionheader .menu-item span,
@@ -82,7 +82,7 @@
 }
 
 .sidebar-menu-sub-link {
-  height: var(--sidebar-menu-height);
+  min-height: var(--sidebar-menu-height);
   display: flex;
   align-items: center;
   padding: var(--sidebar-menu-padding);
