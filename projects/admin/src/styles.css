@@ -21,7 +21,7 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@utility layout-container {
+@utility max-content {
   max-width: 96rem;
   margin: 0 auto;
 }

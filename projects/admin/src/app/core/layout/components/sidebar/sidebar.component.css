@@ -56,6 +56,7 @@
 .sidebar-content ::ng-deep .p-accordionheader {
   --p-accordion-header-background: transparent;
   --p-accordion-header-hover-background: var(--p-content-hover-background);
+  --p-accordion-header-color: var(--p-content-color);
   --p-accordion-header-padding: var(--sidebar-menu-padding);
   --p-accordion-header-border-radius: var(--p-border-radius-sm);
 
