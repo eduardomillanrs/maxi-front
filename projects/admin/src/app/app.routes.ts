@@ -12,6 +12,10 @@ export const routes: Routes = [
    * Routes
    * --------------------------------------------------*/
   {
+    path: 'login',
+    loadComponent: () => import('./core/auth/login'),
+  },
+  {
     path: '',
     component: LayoutComponent,
     children: [

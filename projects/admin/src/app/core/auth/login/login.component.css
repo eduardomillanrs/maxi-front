@@ -1,0 +1,20 @@
+::ng-deep .p-galleria {
+  --p-galleria-border-width: 0;
+  --p-galleria-border-radius: 0;
+
+  height: 100%;
+}
+
+::ng-deep .p-galleria-content {
+  height: 100%;
+}
+
+::ng-deep .p-galleria-items-container {
+  height: 100%;
+}
+
+::ng-deep .p-galleria-item > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
